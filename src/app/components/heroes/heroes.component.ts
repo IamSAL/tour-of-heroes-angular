@@ -7,18 +7,19 @@ import { HeroDetailComponent } from '../hero-detail/hero-detail.component';
 import { HeroService } from '../../services/hero.service';
 import { MessagesComponent } from '../messages/messages.component';
 import { MessageService } from '../../services/message.service';
+import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-heroes',
   standalone: true,
-  imports: [CommonModule, FormsModule, HeroDetailComponent, MessagesComponent],
+  imports: [CommonModule, FormsModule, HeroDetailComponent, MessagesComponent,RouterModule],
   templateUrl: './heroes.component.html',
   styleUrl: './heroes.component.scss',
 })
 export class HeroesComponent implements OnInit {
   heroes: Hero[] = [];
-  selectedHero?: Hero;
+
   onSelect(hero: Hero) {
-    this.selectedHero = hero;
+
     this.messageService.add(`HeroesComponent: Selected hero id=${hero.id}`);
   }
 

@@ -13,6 +13,12 @@ export class HeroService {
     const heroes = of(HEROES);
     return heroes;
   }
+
+  getHero(id: number) {
+    const hero = of(HEROES.find(hero => hero.id === id));
+      this.messageService.add(`HeroService: fetched hero id=${id}`);
+     return hero;
+  }
   constructor(
     private messageService: MessageService
   ) {}
