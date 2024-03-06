@@ -5,10 +5,12 @@ import {FormsModule} from '@angular/forms'
 import { HEROES } from '../../mock-heroes';
 import { HeroDetailComponent } from '../hero-detail/hero-detail.component';
 import { HeroService } from '../../services/hero.service';
+import { MessagesComponent } from '../messages/messages.component';
+import { MessageService } from '../../services/message.service';
 @Component({
   selector: 'app-heroes',
   standalone: true,
-  imports: [CommonModule, FormsModule, HeroDetailComponent],
+  imports: [CommonModule, FormsModule, HeroDetailComponent, MessagesComponent],
   templateUrl: './heroes.component.html',
   styleUrl: './heroes.component.scss',
 })
@@ -17,6 +19,7 @@ export class HeroesComponent implements OnInit {
   selectedHero?: Hero;
   onSelect(hero: Hero) {
     this.selectedHero = hero;
+    this.messageService.add(`HeroesComponent: Selected hero id=${hero.id}`);
   }
 
   getHeroes(): void {
@@ -24,8 +27,11 @@ export class HeroesComponent implements OnInit {
       this.heroes = heroes;
     });
   }
-  constructor(private heroService: HeroService) {}
   ngOnInit(): void {
     this.getHeroes();
   }
+  constructor(
+    private heroService: HeroService,
+    private messageService: MessageService
+  ) {}
 }
