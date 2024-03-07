@@ -52,3 +52,30 @@
   margin-right: .8em;
   border-radius: 4px 0 0 4px;
 }
+
+.hero .delete{
+  visibility: hidden;
+}
+
+.hero .delete{
+  padding: 10px;
+  font-size: small;
+
+}
+.hero .delete:hover{
+  color: white;
+  background-color: red;
+  transition: 0.25s;
+}
+
+.hero{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.hero:hover .delete{
+
+ visibility: visible;
+}
