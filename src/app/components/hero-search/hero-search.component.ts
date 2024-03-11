@@ -12,11 +12,11 @@ import { Hero } from '../../Hero';
   templateUrl: './hero-search.component.html',
   styleUrl: './hero-search.component.scss',
 })
-export class HeroSearchComponent implements OnInit{
+export class HeroSearchComponent implements OnInit {
   heroes!: Observable<Hero[]>;
   private searchTerms = new Subject<string>();
   search(term: string) {
-     this.searchTerms.next(term);
+    this.searchTerms.next(term);
   }
   ngOnInit(): void {
     this.heroes = this.searchTerms.pipe(
@@ -25,7 +25,14 @@ export class HeroSearchComponent implements OnInit{
       distinctUntilChanged(),
       switchMap((term: string) => this.heroService.searchHeroes(term))
     );
+  }
 
+  count = 0;
+  increment() {
+    this.count = this.count + 1;
+  }
+  decrement() {
+    this.count = this.count - 1;
   }
   constructor(private heroService: HeroService) {}
 }
